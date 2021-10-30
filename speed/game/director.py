@@ -3,6 +3,7 @@ from game import constants
 from game.word import Word
 from game.score import Score
 from game.buffer import Buffer
+from game.word_count import WordCount
 
 class Director:
     """A code template for a person who directs the game. The responsibility of 
@@ -29,19 +30,20 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
-       
+
         self._words = []
         for i in range(0, constants.STARTING_WORDS):
             word = Word()
             word.get_points
             self._words.append(word)
+            word.randomize_x()
 
         self._input_service = input_service
         self._keep_playing = True
         self._output_service = output_service
         self._score = Score()
-        #self._snake = Snake()
         self._buffer = Buffer()
+        self._word_count = WordCount()
         
     def start_game(self):
         """Starts the game loop to control the sequence of play.
@@ -70,13 +72,20 @@ class Director:
             self._buffer.clear()
             self._process_buffer(buffer_contents)
 
+
     def _process_buffer(self, buffer_contents):
         for word in self._words:
             word_contents = word.get_text()
-            if buffer_contents == word_contents:
+            if buffer_contents == word_contents.lower():
                 points = word.get_points()
+                
+                # add points
                 self._score.add_points(points)
+                self._word_count.add_points(1)
+
                 # create explosion here
+
+                # reset
                 word.reset()
 
     def _do_updates(self):
@@ -109,6 +118,7 @@ class Director:
         self._output_service.clear_screen()
         self._output_service.draw_actors(self._words)
         self._output_service.draw_actor(self._score)
+        self._output_service.draw_actor(self._word_count)
         self._output_service.draw_actor(self._buffer)
         self._output_service.flush_buffer()
 

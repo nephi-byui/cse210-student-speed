@@ -9,8 +9,10 @@ class Word(Actor):
     
     Stereotype:
         Information Holder
-    Attributes: 
-        _points (integer): The number of points the word  is worth.
+    Attributes:
+        _speed (integer): The speed of the word
+        _points (integer): The number of points the word is worth.
+        _has_bonus (Boolean): has x5 points and is shown in all caps
     """
     def __init__(self):
         """The class constructor. Invokes the superclass constructor.
@@ -23,7 +25,7 @@ class Word(Actor):
     def get_points(self):
         """Returns the points the word is worth.
         Args:
-            self (Food): an instance of Word.
+            self (Word): an instance of Word.
         Returns:
             integer: The points this food is worth.
         """
@@ -32,7 +34,7 @@ class Word(Actor):
     def move_word(self):
         """ Moves the word to the right side of the screen
         Args:
-            self (Food): an instance of Food.
+            self (Word): an instance of Word.
         """
         position = self.get_position()
         x = position.get_x() + self._speed
@@ -40,15 +42,33 @@ class Word(Actor):
         self.set_position(Point(x,y))
 
 
+    def randomize_x(self):
+        """ Randomizes the x axis for a word
+        Args:
+            self (Word): an instance of Word.        
+        """
+        position = self.get_position()
+        x = random.randint(1, constants.MAX_X)
+        y = position.get_y()
+        self.set_position(Point(x,y))
+
     def reset(self):
         """Resets the word by moving it to a random position on the left side of the screen.
         Args:
-            self (Food): an instance of Food.
+            self (Word): an instance of Word.
         """
         
         # set word
         word_text = random.choice(constants.LIBRARY)
         self.set_text(word_text)
+
+        # 1 in 20 chance to be a bonus word
+        self._has_bonus = False        
+        roll = random.randint(1,20)
+        if roll == 20:
+            self._has_bonus = True
+            caps = (self.get_text()).upper()
+            self.set_text(caps)
 
         # random speed
         possible_speeds = range(constants.MIN_WORD_SPEED, constants.MAX_WORD_SPEED)
@@ -65,4 +85,6 @@ class Word(Actor):
         
         # points
         self._points = len(word_text) * self._speed
+        if self._has_bonus:
+            self._points = self._points * 5
         
