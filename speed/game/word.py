@@ -5,13 +5,12 @@ from game.point import Point
 #from game.constants import LIBRARY
 
 class Word(Actor):
-    """ A word
+    """Words the player is trying to type. The responsibility of Food is to keep track of its string and position. A Food can move around randomly if asked to do so. 
     
     Stereotype:
         Information Holder
-
     Attributes: 
-        _points (integer): The number of points the food is worth.
+        _points (integer): The number of points the word  is worth.
     """
     def __init__(self):
         """The class constructor. Invokes the superclass constructor.
@@ -24,7 +23,7 @@ class Word(Actor):
     def get_points(self):
         """Gets the points the word is worth.
         Args:
-            self (Food): an instance of Food.
+            self (Food): an instance of Word.
         Returns:
             integer: The points this food is worth.
         """
@@ -32,6 +31,8 @@ class Word(Actor):
 
     def move_word(self):
         """ Moves the word to the right side of the screen
+        Args:
+            self (Food): an instance of Food.
         """
         position = self.get_position()
         x = position.get_x() + self._speed
@@ -67,6 +68,8 @@ class Word(Actor):
 
     def explode(self):
         """ Explodes a word in dramatic fashion
+        Args:
+            self (Food): an instance of Food.
         """
         length = len(self._text)
         self.set_text("#" * (length + 2))
