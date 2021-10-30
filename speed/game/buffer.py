@@ -4,13 +4,14 @@ from game.point import Point
 from game import constants
 
 class Buffer(Actor):
-    """Points earned. The responsibility of Score is to keep track of the player's points.
+    """Displaying user input. The responsibility of Buffer is to keep track of the player's typed letters.
 
     Stereotype:
         Information Holder
 
     Attributes: 
-        _points (integer): The number of points the food is worth.
+        _baseline (str): label to define where the user is typing
+        _contents (str): what the user has typed thus far
     """
     def __init__(self):
         """The class constructor. Invokes the superclass constructor, initializes points to zero, sets the position and updates the text.
@@ -27,11 +28,11 @@ class Buffer(Actor):
         self._update_text()
     
     def add_letter(self, letter):
-        """Adds the given points to the running total and updates the text.
+        """Adds the given inputs to the running buffer and updates the text.
         
         Args:
-            self (Score): An instance of Score.
-            points (integer): The points to add.
+            self (Buffer): An instance of Buffer.
+            letter (str): The letter from input that the user has typed
         """
         self._contents += letter
         self._update_text()
