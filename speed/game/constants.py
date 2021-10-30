@@ -3,7 +3,6 @@ import os
 MAX_X = 60
 MAX_Y = 20
 
-SNAKE_LENGTH = 3
 FRAME_LENGTH = 0.1
 
 MIN_WORD_SPEED = 1
