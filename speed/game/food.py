@@ -2,10 +2,9 @@ import random
 from game import constants
 from game.actor import Actor
 from game.point import Point
-#from game.constants import LIBRARY
 
 class Food(Actor):
-    """A nutritious substance that snake's like. The responsibility of Food is to keep track of its appearance and position. A Food can move around randomly if asked to do so. 
+    """Words the player is trying to type. The responsibility of Food is to keep track of its string and position. A Food can move around randomly if asked to do so. 
     
     Stereotype:
         Information Holder
@@ -17,12 +16,10 @@ class Food(Actor):
         """The class constructor. Invokes the superclass constructor, set's the 
         text and moves the food to a random position within the boundary of the 
         screen.
-        
         Args:
             self (Actor): an instance of Actor.
         """
         super().__init__()
-
         self.set_text("")
         self.reset()
     
@@ -65,7 +62,6 @@ class Food(Actor):
         position = Point(x, y)
 
         self.set_position(position)
-        #self.set_velocity(Point(0, 0))
         
         # points
         self._points = len(word_text) * self._speed
@@ -74,6 +70,8 @@ class Food(Actor):
         """ Explodes a word in dramatic fashion
         """
         length = len(self._text)
-        self.set_text("#" * length)
+        self.set_text("#" * (length + 2))
+        self.set_text("+" * (length + 2))
+        self.set_text("#" * (length + 2))
         self.reset()
         
