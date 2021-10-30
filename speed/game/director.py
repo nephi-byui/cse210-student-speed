@@ -41,7 +41,7 @@ class Director:
         self._keep_playing = True
         self._output_service = output_service
         self._score = Score()
-        self._snake = Snake()
+        #self._snake = Snake()
         self._buffer = Buffer()
         
     def start_game(self):
@@ -73,8 +73,8 @@ class Director:
             self._process_buffer(buffer_contents)
 
 
-        direction = self._input_service.get_direction()
-        self._snake.move_head(direction)
+        #direction = self._input_service.get_direction()
+        #self._snake.move_head(direction)
 
 
     def _do_updates(self):
@@ -102,7 +102,7 @@ class Director:
 
         self._output_service.clear_screen()
         self._output_service.draw_actors(self._words)
-        self._output_service.draw_actors(self._snake.get_all())
+        #self._output_service.draw_actors(self._snake.get_all())
         self._output_service.draw_actor(self._score)
         self._output_service.draw_actor(self._buffer)
         self._output_service.flush_buffer()
