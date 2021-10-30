@@ -64,7 +64,8 @@ class Director:
     def _get_inputs(self):
         """Gets the inputs at the beginning of each round of play.
             > gets the letter from input service
-            > updates the buffer if user presses Enter
+            > updates the buffer
+            > processes the buffer contents if user presses Enter
         Args:
             self (Director): An instance of Director.
         """
@@ -79,13 +80,20 @@ class Director:
 
 
     def _process_buffer(self, buffer_contents):
+        """ Check the buffer contents against the text of the words,
+        
+        Args:
+            self (Director):        An instance of Director.
+            buffer_contents (STR):  the text in the buffer
+
+        """
         for word in self._words:
             word_contents = word.get_text()
-            if buffer_contents == word_contents.lower():
-                points = word.get_points()
-                
+
+            if buffer_contents.lower() == word_contents.lower():                
                 # add points
-                self._score.add_points(points)
+                score = word.get_points()
+                self._score.add_points(score)
                 self._word_count.add_points(1)
 
                 # create explosion here
@@ -104,20 +112,21 @@ class Director:
         """
         self._buffer.add_letter(self._letter)
 
-        # move words and reset words that hit the right side
-        
+        # move words to the right
         for word in self._words:
             word.move_word()
         
+        # reset words that leave the edge of the screen
         for word in self._words:
             position = word.get_position()
             x = position.get_x()
             if x >= constants.MAX_X:
                 word.reset()
 
-        # remove explosions who are out of frames
+        # updates for explosions
         for explosion in self._explosions:
             explosion.flicker()
+            # remove explosions that are out of frames
             if explosion.frames_left == 0:
                 self._explosions.remove(explosion)
         
