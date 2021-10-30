@@ -17,12 +17,10 @@ class Food(Actor):
         """The class constructor. Invokes the superclass constructor, set's the 
         text and moves the food to a random position within the boundary of the 
         screen.
-        
         Args:
             self (Actor): an instance of Actor.
         """
         super().__init__()
-
         self.set_text("")
         self.reset()
     
@@ -74,6 +72,8 @@ class Food(Actor):
         """ Explodes a word in dramatic fashion
         """
         length = len(self._text)
-        self.set_text("#" * length)
+        self.set_text("#" * (length + 2))
+        self.set_text("+" * (length + 2))
+        self.set_text("#" * (length + 2))
         self.reset()
         
