@@ -85,8 +85,20 @@ class Director:
             self (Director): An instance of Director.
         """
         self._buffer.add_letter(self._letter)
+
+        # move words and reset words that hit the right side
+        
         for word in self._words:
             word.move_word()
+        
+        for word in self._words:
+            position = word.get_position()
+            x = position.get_x()
+            if x >= constants.MAX_X:
+                word.reset()
+        
+        
+        
         #self._handle_body_collision()
         #self._handle_food_collision()
         
