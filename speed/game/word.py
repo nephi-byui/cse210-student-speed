@@ -21,7 +21,7 @@ class Word(Actor):
         self.reset()
     
     def get_points(self):
-        """Gets the points the word is worth.
+        """Returns the points the word is worth.
         Args:
             self (Food): an instance of Word.
         Returns:
@@ -65,15 +65,4 @@ class Word(Actor):
         
         # points
         self._points = len(word_text) * self._speed
-
-    def explode(self):
-        """ Explodes a word in dramatic fashion
-        Args:
-            self (Food): an instance of Food.
-        """
-        length = len(self._text)
-        self.set_text("#" * (length + 2))
-        self.set_text("+" * (length + 2))
-        self.set_text("#" * (length + 2))
-        self.reset()
         

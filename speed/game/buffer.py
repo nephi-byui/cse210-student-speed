@@ -15,7 +15,6 @@ class Buffer(Actor):
     """
     def __init__(self):
         """The class constructor. Invokes the superclass constructor, initializes points to zero, sets the position and updates the text.
-        
         Args:
             self (Buffer): an instance of Buffer.
         """
@@ -29,7 +28,6 @@ class Buffer(Actor):
     
     def add_letter(self, letter):
         """Adds the given inputs to the running buffer and updates the text.
-        
         Args:
             self (Buffer): An instance of Buffer.
             letter (str): The letter from input that the user has typed
@@ -41,10 +39,16 @@ class Buffer(Actor):
         self.set_text(self._baseline + " " + self._contents)
 
     def get_contents(self):
-        """
+        """ Returns the current contents of the buffer
+        Args:
+            self (Buffer): An instance of Buffer.
         """
         return self._contents
 
     def clear(self):
+        """ Clears the current contents of the buffer
+        Args:
+            self (Buffer): An instance of Buffer.
+        """
         self._contents = ""
         self._update_text()

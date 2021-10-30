@@ -76,7 +76,7 @@ class Director:
             if buffer_contents == word_contents:
                 points = word.get_points()
                 self._score.add_points(points)
-                word.explode()
+                # create explosion here
                 word.reset()
 
     def _do_updates(self):
@@ -100,9 +100,7 @@ class Director:
                 word.reset()
         
     def _do_outputs(self):
-        """Outputs the important game information for each round of play. In 
-        this case, that means checking if there are stones left and declaring 
-        the winner.
+        """ Clears the screen, draws the actors, and flushes the buffer
 
         Args:
             self (Director): An instance of Director.
