@@ -2,7 +2,7 @@ import sys
 from asciimatics.event import KeyboardEvent
 
 class InputService:
-    """Detects player input. The responsibility of the class of objects is to detect player keypresses and translate them into a point representing a direction (or velocity).
+    """Detects player input. The responsibility of the class of objects is to detect player keypresses and translate them into a string 
 
     Stereotype: 
         Service Provider
@@ -38,3 +38,5 @@ class InputService:
             elif event >= 97 and event <= 122: 
                 result = chr(event)
         return result
+
+        
