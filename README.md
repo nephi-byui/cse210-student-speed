@@ -55,3 +55,4 @@ root                    (project root folder)
 ---
 * One in every twenty words has x5 bonus, identifiable by being uppercase
 * A word counter in addition to the scoreboard, displaying the number of words completed
+* Explosion animation displayed for words when they are typed correctly
