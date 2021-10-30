@@ -41,3 +41,5 @@ root                    (project root folder)
 ## Authors
 ---
 * # TODO: Add names and emails here
+
+Tianna DeSpain -- tiannadespain@gmail.com
