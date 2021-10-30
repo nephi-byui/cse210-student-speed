@@ -1,6 +1,6 @@
 from time import sleep
 from game import constants
-from game.food import Food
+from game.word import Word
 from game.score import Score
 from game.buffer import Buffer
 
@@ -12,7 +12,7 @@ class Director:
         Controller
 
     Attributes:
-        food (Food): The snake's target.
+        _words (list) : a list of 
         input_service (InputService): The input mechanism.
         keep_playing (boolean): Whether or not the game can continue.
         output_service (OutputService): The output mechanism.
@@ -30,7 +30,7 @@ class Director:
         
         self._words = []
         for i in range(0, constants.STARTING_WORDS):
-            word = Food()
+            word = Word()
             word.get_points
             self._words.append(word)
 

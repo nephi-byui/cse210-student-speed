@@ -4,7 +4,7 @@ from game.actor import Actor
 from game.point import Point
 #from game.constants import LIBRARY
 
-class Food(Actor):
+class Word(Actor):
     """ A word
     
     Stereotype:
