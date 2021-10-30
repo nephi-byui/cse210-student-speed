@@ -40,12 +40,12 @@ class InputService:
         result = ""
         event = self._screen.get_key()
         if not event is None:
+            # backspace
             if event == 27:
                 sys.exit()
-            elif event == 10: 
+            elif event == 13 or event == 10: 
                 result = "*"
-            #elif event >= 97 and event <= 122:
-            elif event >= 1 and event <= 122: 
+            elif event >= 97 and event <= 122:
                 result = chr(event)
         return result
         

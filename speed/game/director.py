@@ -65,8 +65,8 @@ class Director:
         """
         self._letter = self._input_service.get_letter()
 
-        # if player presses Enter
-        if self._letter == "Enter":
+        #  if player presses Enter
+        if self._letter == "*":
             buffer_contents = self._buffer.get_contents()
             self._letter = ''
             self._buffer.clear()
@@ -111,6 +111,9 @@ class Director:
         for word in self._words:
             word_contents = word.get_text()
             if buffer_contents == word_contents:
+                points = word.get_points()
+                self._score.add_points(points)
+                word.explode()
                 word.reset()
 
 
