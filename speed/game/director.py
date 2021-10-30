@@ -12,12 +12,15 @@ class Director:
         Controller
 
     Attributes:
-        _words (list) : a list of 
-        input_service (InputService): The input mechanism.
-        keep_playing (boolean): Whether or not the game can continue.
-        output_service (OutputService): The output mechanism.
-        score (Score): The current score.
-        snake (Snake): The player or snake.
+        _words (list)                   : a list of Word(Actor) objects
+        _input_service (InputService)   : The input mechanism
+        output_service (OutputService)  : the output mechanism
+
+        _keep_playing (boolean)         : continue playing while True
+        _score (Score)                  : an instance of Score(Actor)
+        _buffer (Buffer)                : an instance of Buffer(Actor)
+
+        _letter (STR)                   : a letter
     """
 
     def __init__(self, input_service, output_service):
@@ -26,8 +29,7 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
-        #self._food = Food()
-        
+       
         self._words = []
         for i in range(0, constants.STARTING_WORDS):
             word = Word()
@@ -43,7 +45,6 @@ class Director:
         
     def start_game(self):
         """Starts the game loop to control the sequence of play.
-        
         Args:
             self (Director): an instance of Director.
         """
@@ -54,9 +55,9 @@ class Director:
             sleep(constants.FRAME_LENGTH)
 
     def _get_inputs(self):
-        """Gets the inputs at the beginning of each round of play. In this case,
-        that means getting the desired direction and moving the snake.
-
+        """Gets the inputs at the beginning of each round of play.
+            > gets the letter from input service
+            > updates the buffer if user presses Enter
         Args:
             self (Director): An instance of Director.
         """
@@ -69,10 +70,14 @@ class Director:
             self._buffer.clear()
             self._process_buffer(buffer_contents)
 
-
-        #direction = self._input_service.get_direction()
-        #self._snake.move_head(direction)
-
+    def _process_buffer(self, buffer_contents):
+        for word in self._words:
+            word_contents = word.get_text()
+            if buffer_contents == word_contents:
+                points = word.get_points()
+                self._score.add_points(points)
+                word.explode()
+                word.reset()
 
     def _do_updates(self):
         """Updates the important game information for each round of play. In 
@@ -109,11 +114,3 @@ class Director:
         self._output_service.draw_actor(self._buffer)
         self._output_service.flush_buffer()
 
-    def _process_buffer(self, buffer_contents):
-        for word in self._words:
-            word_contents = word.get_text()
-            if buffer_contents == word_contents:
-                points = word.get_points()
-                self._score.add_points(points)
-                word.explode()
-                word.reset()
