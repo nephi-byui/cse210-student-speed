@@ -1,3 +1,3 @@
 """
-The game package contains specific classes for playing Hunter.
+The game package contains specific classes for playing Speed.
 """

@@ -18,7 +18,7 @@ class WordCount(Actor):
         """
         super().__init__()
         self._word_count = 0
-        position = Point(45, 0)
+        position = Point(42, 0)
         self.set_position(position)
         self.set_text(f"Word Count: {self._word_count}")
     

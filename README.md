@@ -40,6 +40,18 @@ root                    (project root folder)
 
 ## Authors
 ---
-* # TODO: Add names and emails here
+* Tianna DeSpain - des17015@byui.edu
+* Nephi Malit - byui@nephi.malit.me
 
-Tianna DeSpain -- tiannadespain@gmail.com
+## Basic Features
+---
+* The game begins with five words moving on the screen.
+* The player tries to type the words they see on the screen.
+* The player earns points for the words they type correctly.
+* If the player presses the enter key their buffer is cleared.
+* Play continues until the player presses the ESC key.
+
+## Extra Features
+---
+* One in every twenty words has x5 bonus, identifiable by being uppercase
+* A word counter in addition to the scoreboard, displaying the number of words completed
